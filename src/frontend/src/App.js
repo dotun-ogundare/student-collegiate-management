@@ -1,11 +1,11 @@
 import {useState, useEffect} from 'react'
-import { Layout, Menu, Breadcrumb } from 'antd';
+import {Layout, Menu, Breadcrumb, Table, Spin, Empty} from 'antd';
 import {
     DesktopOutlined,
     PieChartOutlined,
     FileOutlined,
     TeamOutlined,
-    UserOutlined,
+    UserOutlined, LoadingOutlined,
 } from '@ant-design/icons';
 import './App.css';
 
@@ -14,16 +14,44 @@ import { getAllStudents} from "./client";
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
+const columns = [
+    {
+        title: 'Id',
+        dataIndex: 'id',
+        key: 'id',
+    },
+    {
+        title: 'Name',
+        dataIndex: 'name',
+        key: 'name',
+    },
+    {
+        title: 'Email',
+        dataIndex: 'email',
+        key: 'email',
+    },
+    {
+        title: 'Gender',
+        dataIndex: 'gender',
+        key: 'gender',
+    },
+];
+
+const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+
+
 function App() {
     const[students, setStudents] = useState([]);
-    const [collapsed, setCollapsed] = useState(false)
+    const [collapsed, setCollapsed] = useState(false);
+    const [fetching, setFetching] = useState(true)
 
     const fetchStudents = () =>
         getAllStudents()
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                setStudents(data)
+                setStudents(data);
+                setFetching(false);
             })
 
 
@@ -32,9 +60,25 @@ function App() {
         fetchStudents();
     }, []);
 
-    if(students.length <= 0){
-        return "no data";
+    const renderStudents = () => {
+        if(fetching){
+            return <Spin indicator={antIcon} />
+
+        }
+        if(students.length <= 0){
+            return <Empty />
+        }
+        return <Table
+            dataSource={students}
+            columns={columns}
+            bordered
+            title={() => 'Students'}
+            pagination={{ pageSize:50 }}
+            scroll={{ y: 240}}
+            rowKey={(student) => student.id}
+        />;
     }
+
 
     return <Layout style={{ minHeight: '100vh' }}>
         <Sider collapsible collapsed={collapsed}
@@ -69,10 +113,10 @@ function App() {
                     <Breadcrumb.Item>Bill</Breadcrumb.Item>
                 </Breadcrumb>
                 <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-                    Bill is a cat.
+                    {renderStudents()}
                 </div>
             </Content>
-            <Footer style={{ textAlign: 'center' }}>©2022 Faculty of Technical Sciences</Footer>
+            <Footer style={{ textAlign: 'center' }}> By SCM Foreign Students ©2022 Faculty of Technical Sciences</Footer>
         </Layout>
     </Layout>
     /*
