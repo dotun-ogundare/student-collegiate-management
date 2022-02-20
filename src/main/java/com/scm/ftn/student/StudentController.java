@@ -37,11 +37,8 @@ public class StudentController {
         studentService.addStudent(student);
     }
 
-   /* @PostMapping
-    public void addNewStudent() {
-       Student newStudent = new Student(1L, "Kamila", "Kamila@ftn.uns.ac", Gender.FEMALE);
-       studentService.addStudent(newStudent);
-    } */
-
-
+    @DeleteMapping("{studentId}")
+    public void deleteStudent(@PathVariable("studentId") Long studentId){
+        studentService.deleteStudent(studentId);
+    }
 }
