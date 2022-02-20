@@ -18,7 +18,7 @@ public class Student {
     @SequenceGenerator(
             name = "student_sequence",
             sequenceName = "student_sequence",
-            allocationSize = 1
+            allocationSize = 1 //increments the id one at a time
     )
     @GeneratedValue(
             generator = "student_sequence",

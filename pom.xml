@@ -15,6 +15,8 @@
 	<description>The student-collegiate-management (SCM) is a practical software project for managing collegiate records, which can be applied in different contexts. The project was implemented and submitted, by Adedotun Olasunkanmi Ogundare, to the Faculty of Technical Sciences of the prestigious University of Novi Sad. The project was carried out in partial fulfillment of the Software Configuration Management (SCM) Coursework. As such, it is focused on properly maintaining the web-application life cycle from early beginning till deployment using the state-of-art DevOps technologies and agile project management methodology.  </description>
 	<properties>
 		<java.version>17</java.version>
+		<app.image.name>software-config-mgt-project</app.image.name> <!--used to build docker profile ..-->
+		<app.image.tag/>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -61,27 +63,124 @@
 					</excludes>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<groupId>com.google.cloud.tools</groupId>
-				<artifactId>jib-maven-plugin</artifactId>
-				<version>2.5.2</version>
-				<configuration>
-					<from>
-						<image>openjdk:17</image>
-					</from>
-					<container>
-						<ports>
-							<port>8080</port>
-						</ports>
-						<format>OCI</format>
-					</container>
-				</configuration>
-			</plugin>
 		</plugins>
-		<finalName>software-config-mgt</finalName>
+		<finalName>software-config-mgt-project</finalName>
 	</build>
 	<profiles>
+		<!--profile for pushing into docker remote repository-->
+		<profile>
+			<id>jib-push-to-dockerhub</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.google.cloud.tools</groupId>
+						<artifactId>jib-maven-plugin</artifactId>
+						<version>3.2.0</version> <!--try 3.2.0 -->
+						<configuration>
+							<from>
+								<image>openjdk:17</image>
+							</from>
+							<container>
+								<ports>
+									<port>8080</port>
+								</ports>
+								<format>OCI</format>
+							</container>
+						</configuration>
+						<executions>
+							<execution>
+								<id>push-custom-tag</id>
+								<phase>package</phase>
+
+								<configuration>
+									<to>
+										<image>docker.io/coedev/${app.image.name}:${app.image.tag}</image>
+									</to>
+								</configuration>
+								<goals>
+									<goal>build</goal>
+								</goals>
+							</execution>
+
+							<execution>
+								<id>push-latest-tag</id>
+								<phase>package</phase>
+								<configuration>
+									<to>
+										<image>docker.io/coedev/${app.image.name}:latest</image>
+									</to>
+								</configuration>
+								<goals>
+									<goal>build</goal>
+								</goals>
+							</execution>
+
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!--Profile for pushing into local repository-->
+		<profile>
+			<id>jib-push-to-local</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.google.cloud.tools</groupId>
+						<artifactId>jib-maven-plugin</artifactId>
+						<version>3.2.0</version> <!--try 3.2.0 -->
+						<configuration>
+							<from>
+								<image>openjdk:17</image>
+							</from>
+							<container>
+								<ports>
+									<port>8080</port>
+								</ports>
+								<format>OCI</format>
+							</container>
+						</configuration>
+						<executions>
+							<execution>
+								<id>push-custom-tag</id>
+								<phase>package</phase>
+								<configuration>
+									<to>
+										<image>coedev/${app.image.name}:${app.image.tag}</image>
+									</to>
+								</configuration>
+								<goals>
+									<goal>dockerBuild</goal>
+								</goals>
+							</execution>
+
+							<execution>
+								<id>push-latest-tag</id>
+								<phase>package</phase>
+								<configuration>
+									<to>
+										<image>coedev/${app.image.name}:latest</image>
+									</to>
+								</configuration>
+								<goals>
+									<goal>dockerBuild</goal>
+								</goals>
+							</execution>
+
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+
 		<profile>
 			<id>build-frontend</id>
 			<activation>
