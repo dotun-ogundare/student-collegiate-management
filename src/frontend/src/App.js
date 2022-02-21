@@ -136,8 +136,23 @@ function App() {
         if (fetching) {
             return <Spin indicator={antIcon}/>
         }
-        if (students.length <= 0) {
+       /* if (students.length <= 0) {
             return <Empty/>;
+        }*/
+        if (students.length <= 0) {
+            return <>
+                <Button
+                    onClick={() => setShowDrawer(!showDrawer)}
+                    type="primary" shape="round" icon={<PlusOutlined/>} size="small">
+                    Add New Student
+                </Button>
+                <StudentDrawerForm
+                    showDrawer={showDrawer}
+                    setShowDrawer={setShowDrawer}
+                    fetchStudents={fetchStudents}
+                />
+                <Empty/>
+            </>
         }
         return <>
             <StudentDrawerForm
@@ -149,6 +164,7 @@ function App() {
                 dataSource={students}
                 columns={columns(fetchStudents)}
                 bordered
+
                 title={() =>
                     <>
                         <Tag>Number of students</Tag>
@@ -165,6 +181,7 @@ function App() {
                 scroll={{y: 500}}
                 rowKey={student => student.id}
             />
+
         </>
     }
     return <Layout style={{minHeight: '100vh'}}>
@@ -207,4 +224,6 @@ function App() {
         </Layout>
     </Layout>
 }
+
+
 export default App;
