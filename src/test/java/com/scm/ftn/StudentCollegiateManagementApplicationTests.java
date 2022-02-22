@@ -9,7 +9,6 @@ class StudentCollegiateManagementApplicationTests {
 
 	@Test
 	void contextLoads() {
-
 		//Assertions.fail("This is used to test the build");
 	}
 
