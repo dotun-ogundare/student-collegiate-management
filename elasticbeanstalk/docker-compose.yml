@@ -1,7 +1,7 @@
 version:  "3.8"
 services:
   backend:
-    image: "coedev/software-config-mgt.jar:v2"
+    image: "coedev/software-config-mgt-project:5"
     ports:
       - "80:8080"
     restart: "always"

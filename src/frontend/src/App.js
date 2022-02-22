@@ -11,7 +11,7 @@ import {
     Badge,
     Tag,
     Avatar,
-    Radio, Popconfirm
+    Radio, Popconfirm, Image
 } from 'antd';
 
 import {
@@ -220,7 +220,12 @@ function App() {
                     {renderStudents()}
                 </div>
             </Content>
-            <Footer style={{textAlign: 'center'}}>By SCM Foreign Students ©2022 Faculty of Technical Sciences</Footer>
+            <Footer style={{textAlign: 'center'}}>
+                <Image
+                    width={75}
+                    src = "https://user-images.githubusercontent.com/50335434/155222324-03e2601a-38c4-46a3-8053-d96ed8db78c2.jpeg"
+                />
+            </Footer>
         </Layout>
     </Layout>
 }
