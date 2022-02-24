@@ -11,6 +11,8 @@ class StudentCollegiateManagementApplicationTests {
 	void contextLoads() {
 		//Assertions.fail("This is used to test the build");
 		//
+		//
+
 	}
 
 }
