@@ -8,11 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 class StudentCollegiateManagementApplicationTests {
 
 	@Test
-	void contextLoads() {
-		//Assertions.fail("This is used to test the build");
-		//Assertions.fail("This is used to test the build");
-		////Assertions.fail("This is used to test the build");
-
-	}
+	void contextLoads() {	}
 
 }
