@@ -4,7 +4,7 @@ import {Drawer, Input, Col, Select, Form, Row, Button, Spin} from 'antd';
 import {addNewStudent} from "./client";
 import {LoadingOutlined} from "@ant-design/icons";
 import {useState} from "react";
-import {errorNotification, successNotification, infoNotification, warningNotification} from "./Notification";
+import {errorNotification, successNotification} from "./Notification";
 
 
 
