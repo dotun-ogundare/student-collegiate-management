@@ -1,4 +1,5 @@
-import fetch from 'unfetch'
+import fetch from 'unfetch';
+
 const checkStatus = response => {
     if (response.ok) {
         return response;
@@ -19,9 +20,9 @@ export const addNewStudent = student =>
                 'Content-Type': 'application/json'
             },
             method: 'POST',
-            body:JSON.stringify(student)
+            body: JSON.stringify(student)
         }
-    );
+    ).then(checkStatus)
 
 export const deleteStudent = studentId =>
     fetch(`api/v1/students/${studentId}`, {
