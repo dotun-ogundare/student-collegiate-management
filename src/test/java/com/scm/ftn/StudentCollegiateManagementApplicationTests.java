@@ -9,5 +9,5 @@ class StudentCollegiateManagementApplicationTests {
 
 	@Test
 	void contextLoads() {	}
-
+//this test should pass
 }
