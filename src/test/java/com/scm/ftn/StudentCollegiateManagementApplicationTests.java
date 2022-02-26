@@ -1,5 +1,6 @@
 package com.scm.ftn;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -8,6 +9,7 @@ class StudentCollegiateManagementApplicationTests {
 
 	@Test
 	void contextLoads() {
+		Assertions.fail("oops! test failed categorically");
 	}
 
 }
