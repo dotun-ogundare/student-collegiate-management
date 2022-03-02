@@ -18,8 +18,8 @@ env:
   DOCKER_HUB_USERNAME: coedev
   # AWS & Elastic Bean Stalk
   AWS_REGION: us-east-2
-  EB_ENVIRONMENT_NAME: Softwareconfigmgtcourse-env
-  EB_APPLICATION_NAME: software-config-mgt-course
+  EB_ENVIRONMENT_NAME: Softwareconfigurationmgt-env
+  EB_APPLICATION_NAME: softwareconfigurationmgt
   EB_DEPLOYMENT_PACKAGE: elasticbeanstalk/docker-compose.yml
 
 jobs:
