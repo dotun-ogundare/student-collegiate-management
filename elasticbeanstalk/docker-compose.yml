@@ -1,7 +1,7 @@
 version:  "3.8"
 services:
   backend:
-    image: "coedev/springboot-react-fullstack:2.3.2022.2.10.56"
+    image: "coedev/tourists-hub-serbia:3"
     ports:
       - "80:8080"
     restart: "always"
