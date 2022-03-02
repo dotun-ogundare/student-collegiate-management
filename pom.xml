@@ -13,7 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>tourists-hub-serbia</name>
 	<description>SCM project for Spring Boot</description>
-	<properties>
+	<properties> <!--test-->
 		<java.version>15</java.version>
 		<!-- <app.image.name>springboot-react-fullstack</app.image.name> software-config-mgt-project-->
 		<app.image.name>tourists-hub-serbia</app.image.name> <!--software-config-mgt-project-->
